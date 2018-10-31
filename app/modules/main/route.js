@@ -51,20 +51,35 @@ logInRouter.get('/', (req, res) => {
     })
 })
 .post('/login/email/availability', (req, res) => {//check if email is existing
-			var emailQuery = `SELECT * FROM accounts WHERE strAccountEmail = ?`;
-			db.query(emailQuery, [req.body.email], function (err, results, fields) {
-				if (err) return console.log(err);
-				console.log(results)
-				if(results.length > 0){
-					console.log('E-mail is Existing')
-					res.send({"email": false });
-				}
-				else{
-					console.log('E-mail is Available')
-					res.send({"email": true });
-				}
-			})
-		})
+    let emailQuery = `SELECT * FROM accounts WHERE strAccountEmail = ?`;
+    db.query(emailQuery, [req.body.email], function (err, results, fields) {
+        if (err) return console.log(err);
+        console.log(results)
+        if(results.length > 0){
+            console.log('E-mail is Existing')
+            res.send({"email": false });
+        }
+        else{
+            console.log('E-mail is Available')
+            res.send({"email": true });
+        }
+    })
+})
+.post('/login/username/availability', (req, res) => {//check if username is existing
+    let usernameQuery = `SELECT * FROM accounts WHERE strAccountUsername = ?`;
+    db.query(usernameQuery, [req.body.username], function (err, results, fields) {
+        if (err) return console.log(err);
+        console.log(results)
+        if(results.length > 0){
+            console.log('Username is Existing')
+            res.send({"username": false });
+        }
+        else{
+            console.log('Username is Available')
+            res.send({"username": true });
+        }
+    })
+})
 
 
 router.use(authMiddleware.hasAuth);
