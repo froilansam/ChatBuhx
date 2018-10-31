@@ -1,45 +1,305 @@
+doctype html
+// if lt IE 7
+// if IE 7
+// if IE 8
+//if gt IE 8
+	| if gt IE 8| [if gt IE 8]
+// <![endif]
+// Mirrored from themes-lab.com/engage/login-image by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 17 Mar 2018 20:00:03 GMT
+// Added by HTTrack
+meta(http-equiv='content-type', content='text/html;charset=UTF-8')
+meta(charset='utf-8')
+meta(http-equiv='X-UA-Compatible', content='IE=edge')
+title Hit Me Up! | Login
+meta(name='viewport', content='width=device-width, initial-scale=1')
+link(rel='apple-touch-icon', href='/assets/img/various/apple-touch-icon.png')
+link(rel='shortcut icon', href='/assets/img/favicon.ico', type='image/x-icon')
+link(href='https://fonts.googleapis.com/css?family=Montserrat:400,700%7COpen+Sans:300,400,700,800', rel='stylesheet')
+link(rel='stylesheet', href='/assets/js/libs/font-awesome/css/font-awesome.min.css')
+link(rel='stylesheet', href='/assets/js/libs/bootstrap/dist/css/bootstrap.min.css')
+link(rel='stylesheet', href='/assets/css/icons/nucleo.css')
+link(rel='stylesheet', href='/assets/js/libs/animate.css/animate.min.css')
+link(rel='stylesheet', href='/assets/js/plugins/slick-modal/sm-minified.css')
 
-html
-    head
-        // This is the title of the page. Pretty basic.
-        title FroyExpress Boilerplate
+// BEGIN PAGE STYLE
+link(rel='stylesheet', href='/assets/css/form.css')
+link(rel='stylesheet', href='/assets/css/pages.css')
+// END PAGE STYLE
+link(rel='stylesheet', href='/assets/css/buttons.css')
+link(rel='stylesheet', href='/assets/css/builder.css')
+link(rel='stylesheet', href='/assets/css/colors.css')
+link(rel='stylesheet', href='/assets/css/footers.css')
+link(rel='stylesheet', href='/assets/css/main.css')
+link(rel='stylesheet', href='/assets/css/nav.css')
+link(rel='stylesheet', href='/assets/css/preloader.css')
+link(rel='stylesheet', href='/assets/css/themes.css')
+link(rel='stylesheet', href='/assets/css/ui.css')
+link(rel='stylesheet', href='/assets/css/widgets.css')
+script(src='/assets/js/modernizr-2.8.3-respond-1.4.2.min.js')
 
-        // Here we import the asset files such as Bulma and FontAwesome.
-        // You can use this out of the box. This btw, is an HTML comment
-        // in Pug. This will appear in your browser when you render the
-        // HTML.
-        link(rel="stylesheet" href="/assets/bulma/bulma.css")
-        link(rel="stylesheet" href="/assets/font-awesome-4.7.0/css/font-awesome.min.css")
+// BEGIN PRELOADER
 
-    body
-        - var hasIncorrect = typeof incorrect !== 'undefined' ? 'Incorrect username or password.' : ''
-        - var hasUnauthorized = typeof unauthorized !== 'undefined' ? 'You are not authorized to view the page you\'re trying to access. Please log in first.' : ''
-        section.hero.is-dark
-            .hero-body
-                if hasIncorrect || hasUnauthorized
-                    .notification.is-danger
-                        | #{hasIncorrect || hasUnauthorized}
-                .columns
-                    .column.is-7
-                        .container
-                            h1.title FroyeExpress
-                            h2.subtitle An ExpressJS Boilerplate
+.loader-wrapper
+	.loader-circle
+// END PRELOADER
 
-                    .column
-                        form(method="POST" action="/login")
-                            .field.is-horizontal
-                                .field-label.is-normal
-                                    label.label.has-text-white E-mail
-                                .field-body
-                                    .field
-                                        p.control.is-expanded
-                                            input.input(type="email" name="email" placeholder="john.doe@xyz.com")
-                            
-                            .field.is-horizontal
-                                .field-label.is-normal
-                                    label.label.has-text-white Password
-                                .field-body
-                                    .field
-                                        p.control.is-expanded
-                                            input.input(type="password" name="password")
-                            input.button.is-primary.is-pulled-right(type="submit" value="Log-in")
+#wrapper
+	
+	#main-content
+
+		section.section.page-login.height-full.img-cover(data-bg-img='nature/full-19.jpg')
+			.section-overlay(style='opacity: 0.4;')
+			.login-inner
+				div
+					.infobox.infobox-square
+						h3 Login to Hit Me Up!
+						form
+							.form-group
+								label Username Or E-mail
+								.prepend-icon
+									input.form-control.input-lg(type='email', placeholder='Enter your email')
+									i.nc-icon-outline.ui-1_email-83
+							.form-group
+								label Password
+								.prepend-icon
+									input.form-control.input-lg(type='password', placeholder='Enter your password')
+									i.nc-icon-outline.ui-1_lock-circle
+							.form-group
+								.checkbox
+									input#remember(type='checkbox')
+									label(for='remember') remember me
+							button.btn.btn-lg.m-t-10.btn-important.btn-primary.btn-block(type='submit') LOGIN
+						.m-t-20.p-b-50.clearfix
+							a(href='password-recover.html') Forgot password?
+							a.pull-right.open-modal-register(href="#") Create my account
+	// BEGIN FOOTER
+	footer#footer
+		#footer-bottom
+			.container-large
+				.row
+					.col-sm-12.t-center
+						p.copyright © Froilan Malibiran 2018
+	// END FOOTER
+
+
+//
+.slickModal(data-plugin-options='{"windowWidth":"600px","windowLocation":"center","windowTransitionEffect":"zoomOut","closeButton":"icon","reopenClass":"open-modal-register"}')
+	.window.modal-lg
+		.wrapper.white-modal
+			.p-30
+				h3.t-center.m-b-40 Create my account
+				form#registrationForm
+					.form-group
+						.row
+							.col-sm-6
+								label First Name
+								.prepend-icon
+									input#firstName.form-control(name='firstName' type='text')
+									i.nc-icon-outline.users_single-03
+							.col-sm-6
+								label Last Name
+								.prepend-icon
+									input#lastName.form-control(name='lastName' type='text')
+									i.nc-icon-outline.users_single-03
+					.form-group
+						label E-mail Address
+						.prepend-icon
+							input#email.form-control(name='email' type='email')
+							i.nc-icon-outline.ui-1_email-83
+					.form-group
+						label Username
+						.prepend-icon
+							input#username.form-control(name='username' type='username')
+							i.nc-icon-outline.ui-1_email-83
+					.form-group
+						.row
+							.col-sm-6
+								label Password
+								.prepend-icon
+									input#password.form-control(name='password' type='password')
+									i.nc-icon-outline.ui-1_lock
+							.col-sm-6
+								label Repeat Password
+								.prepend-icon
+									input#password2.form-control(name='password2' type='password')
+									i.nc-icon-outline.ui-1_lock
+					.checkbox
+						input#terms(type='checkbox')
+						label(for='terms') I agree with terms and conditions
+					.m-t-20
+						button#submitForm.btn.btn-primary.btn-block(type='submit')
+							strong CREATE MY ACCOUNT
+//
+a.scrollup(href='#')
+	i.nc-icon-outline.arrows-1_minimal-up
+script(src='/assets/js/libs/jquery/dist/jquery.min.js')
+script(src='/assets/js/libs/jquery-ui/jquery-ui.min.js')
+script(src='/assets/js/libs/gsap/src/minified/TweenMax.min.js')
+script(src='/assets/js/libs/gsap/src/minified/plugins/ScrollToPlugin.min.js')
+script(src='/assets/js/libs/tether/dist/js/tether.min.js')
+script(src='/assets/js/libs/bootstrap/dist/js/bootstrap.min.js')
+script(src='/assets/js/libs/superfish/dist/js/superfish.min.js')
+script(src='/assets/js/libs/appear/jquery.appear.js')
+script(src='/assets/js/libs/skrollr/dist/skrollr.min.js')
+script(src='/assets/js/libs/easyticker-jquery/jquery.easy-ticker.min.js')
+script(src='/assets/js/plugins/slick-modal/jquery.slick-modals.min.js')
+// BEGIN PAGE SCRIPT
+script(src='/assets/js/widgets.js')
+// END PAGE SCRIPT
+script(src='/assets/js/navigation.js')
+script(src='/assets/js/formValidation.js')
+script(src='/assets/js/search.js')
+script(src='/assets/js/builder.js')
+script(src='/assets/js/main.js')
+script.
+	$(document).ready(function(){
+		$(document).on('click', '#submitForm', function(e){
+			e.preventDefault();
+			var accountData = {
+				firstName: $('#firstName').val(),
+				lastName: $('#lastName').val(),
+				email: $('#email').val(),
+				username: $('#username').val(),
+				password: $('#password').val(),
+			}
+
+			$.post('/login/register', accountData).then(function(data){
+				if(data.indicator){
+					alert('Successfully Registered');
+				}
+				else{
+					alert('Registered Failed');
+				}
+			})
+		})
+
+		$('#registrationForm').formValidation({
+			framework: 'bootstrap',
+			icon: {
+				valid: 'fa fa-check',
+				invalid: 'fa fa-times',
+				validating: 'fa fa-spinner'
+			},
+			fields: {
+				firstName: {
+					validators: {
+						notEmpty: {
+							message: 'Enter your first name'
+						},
+					}
+				},
+				lastName: {
+					validators: {
+						notEmpty: {
+							message: 'Enter your last name'
+						},
+					}
+				},
+				email: {
+					validators: {
+						notEmpty: {
+							message: 'Enter your e-mail address'
+						},
+						emailAddress: {
+							message: 'This is not a valid e-mail address.'
+						},
+						remote: {
+							url: '/login/email/availability',
+							message: 'E-mail address has been taken',
+							validKey: 'email',
+							type: 'POST'
+						},
+					}
+				},
+				username: {
+					validators: {
+						
+						notEmpty: {
+							message: `Enter your desired username. You'll use this to sign in to your account.`									
+						},
+						stringLength: {
+							min: 6,
+							max: 30,
+							message: 'The username must be minimum of 6 characters and maximum of 30 characters.'
+						},
+						regexp: {
+							regexp: /^[a-zA-Z0-9_\.]+$/,
+							message: 'The username can only consist of alphabetical, number, dot and underscore'
+						},
+						remote: {
+							url: '/consignorportal/usernameavailability',
+							message: 'Username has been taken',
+							validKey: 'username',
+							type: 'POST'
+						},
+					}
+				},
+				password: {
+					validators: {
+						notEmpty: {
+							message: 'The password is required'
+						},
+						callback: {
+							callback: function(value, validator, $field) {
+								var password = $field.val();
+								if (password == '') {
+									return true;
+								}
+
+								var result  = zxcvbn(password),
+									score   = result.score,
+									message = result.feedback.warning || 'The password is weak';
+
+								// Update the progress bar width and add alert class
+								var $bar = $('#strengthBar');
+								switch (score) {
+									case 0:
+										$bar.attr('class', 'progress-bar progress-bar-danger')
+											.css('width', '1%');
+										break;
+									case 1:
+										$bar.attr('class', 'progress-bar progress-bar-danger')
+											.css('width', '25%');
+										break;
+									case 2:
+										$bar.attr('class', 'progress-bar progress-bar-danger')
+											.css('width', '50%');
+										break;
+									case 3:
+										$bar.attr('class', 'progress-bar progress-bar-warning')
+											.css('width', '75%');
+										break;
+									case 4:
+										$bar.attr('class', 'progress-bar progress-bar-success')
+											.css('width', '100%');
+										break;
+								}
+
+								// We will treat the password as an invalid one if the score is less than 3
+								if (score < 3) {
+									return {
+										valid: false,
+										message: message
+									}
+								}
+
+								return true;
+							}
+						}
+					}
+				},
+				password2: {
+					validators: {
+						notEmpty: {
+							message: `Re-enter your password <br>`
+						},
+						identical: {
+							field: 'password',
+							message: 'The password and its confirm are not the same.'
+						},
+						
+					}
+				},
+			}
+		})
+	})

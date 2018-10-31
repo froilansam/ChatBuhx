@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
-var logInRouter = express.Router();
-var authMiddleware = require('../auth/middleware');
-var db = require('../../lib/database')();
+const express = require('express');
+const router = express.Router();
+const logInRouter = express.Router();
+const authMiddleware = require('../auth/middleware');
+const db = require('../../lib/database')();
 
 
 logInRouter.use(authMiddleware.noAuthed);
@@ -14,12 +14,12 @@ logInRouter.get('/', (req, res) => {
 
 
     // Change the database name, and the table where you get the user.
-    var queryString = `SELECT * FROM users WHERE strEmail = ? AND strPassword = ?;`
+    let queryString = `SELECT * FROM users WHERE strEmail = ? AND strPassword = ?;`
     db.query(queryString, [req.body.email, req.body.password], (err, results, fields) => {
         if (err) throw err;
         if (results.length === 0) return res.redirect('/login?incorrect');
 
-        var user = results[0];
+        let user = results[0];
 
         delete user.password;
 
@@ -28,6 +28,44 @@ logInRouter.get('/', (req, res) => {
         return res.redirect('/index');
     });
 })
+.post('/register', (req, res) => {
+    console.log('----- Account Information -----')
+    console.log(req.body)
+    console.log('----- Account Information -----')
+
+    // Passing the value to the variable account
+    let account = req.body;
+
+    // Inserting Account Information to the Database
+    let registerQuery = `INSERT INTO accounts (strAccountUsername, strAccountPassword, strAccountFirstname, strAccountLastName, strAccountEmail) VALUES (?, ?, ?, ?, ?);`
+    db.query(registerQuery, [account.username, account.password, account.firstName, account.lastName, account.email], (err, results, field) => {
+        if(err){
+            console.log(err);
+            res.status(200).send({indicator: false});
+            res.end();
+        }
+        else{
+            res.status(200).send({indicator: true});
+            res.end();            
+        }
+    })
+})
+.post('/login/email/availability', (req, res) => {//check if email is existing
+			var emailQuery = `SELECT * FROM accounts WHERE strAccountEmail = ?`;
+			db.query(emailQuery, [req.body.email], function (err, results, fields) {
+				if (err) return console.log(err);
+				console.log(results)
+				if(results.length > 0){
+					console.log('E-mail is Existing')
+					res.send({"email": false });
+				}
+				else{
+					console.log('E-mail is Available')
+					res.send({"email": true });
+				}
+			})
+		})
+
 
 router.use(authMiddleware.hasAuth);
 router.get('/', (req, res) => {
