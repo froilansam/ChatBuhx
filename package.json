@@ -1,0 +1,23 @@
+{
+  "name": "hitmeup",
+  "version": "1.0.0",
+  "description": "A simple web chat application using Socket.io",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/froilansam/HitMeUp.git"
+  },
+  "keywords": [
+    "Chat",
+    "Socketio"
+  ],
+  "author": "Froilan Sam S. Malibiran",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/froilansam/HitMeUp/issues"
+  },
+  "homepage": "https://github.com/froilansam/HitMeUp#readme"
+}
